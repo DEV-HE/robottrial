@@ -15,12 +15,29 @@ const { handlerAI } = require("./utils");
 const { textToVoice } = require("./services/eventlab");
 
 const employeesAddonConfig = {
-  model: "gpt-4-0613",
+  model: "gpt-3.5-turbo-0301",
   temperature: 0,
   apiKey: process.env.OPENAI_API_KEY,
 };
 
 const employeesAddon = init(employeesAddonConfig);
+
+// const flowStaff = addKeyword(EVENTS.ACTION).addAnswer(
+//   ["Claro que te interesa?", "mejor te envio audio.."],
+//   null,
+//   async (_, { flowDynamic, state }) => {
+//     try {
+//       console.log("🙉 texto a voz....");
+//       const currentState = state.getMyState();
+//       const path = await textToVoice(currentState.answer);
+//       console.log(`🙉 Fin texto a voz....[PATH]:${path}`);
+//       await flowDynamic([{ body: "escucha", media: path }]);
+//     } catch (error) {
+//       console.error("Error en flowStaff:", error);
+//     }
+//   }
+// );
+
 
 const flowStaff = addKeyword(EVENTS.ACTION).addAnswer(
   ["Claro que te interesa?", "mejor te envio audio.."],
@@ -33,6 +50,24 @@ const flowStaff = addKeyword(EVENTS.ACTION).addAnswer(
     await flowDynamic([{ body: "escucha", media: path }]);
   }
 );
+
+// const flowVoiceNote = addKeyword(EVENTS.VOICE_NOTE).addAction(
+//   async (ctx, ctxFn) => {
+//     try {
+//       await ctxFn.flowDynamic("dame un momento para escucharte...🙉");
+//       console.log("🤖 voz a texto....");
+//       const text = await handlerAI(ctx);
+//       console.log(`🤖 Fin voz a texto....[TEXT]: ${text}`);
+//       const currentState = ctxFn.state.getMyState();
+//       const fullSentence = `${currentState?.answer ?? ""}. ${text}`;
+//       const { employee, answer } = await employeesAddon.determine(fullSentence);
+//       ctxFn.state.update({ answer });
+//       employeesAddon.gotoFlow(employee, ctxFn);
+//     } catch (error) {
+//       console.error("Error en flowVoiceNote:", error);
+//     }
+//   }
+// );
 
 const flowVoiceNote = addKeyword(EVENTS.VOICE_NOTE).addAction(
   async (ctx, ctxFn) => {

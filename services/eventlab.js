@@ -4,7 +4,7 @@ const fs = require('node:fs')
  * @param {*} voiceId clone voice vwfl76D5KBjKuSGfTbLB
  * @returns
  */
-const textToVoice = async (text,voiceId = 'vwfl76D5KBjKuSGfTbLB') => {
+const textToVoice = async (text,voiceId = 'U1aUPIDvufHK51E01Ykw') => {
   const EVENT_TOKEN = process.env.EVENT_TOKEN ?? "";
   const URL = `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`;
 
