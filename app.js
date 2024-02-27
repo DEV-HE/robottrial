@@ -22,66 +22,48 @@ const employeesAddonConfig = {
 
 const employeesAddon = init(employeesAddonConfig);
 
-// const flowStaff = addKeyword(EVENTS.ACTION).addAnswer(
-//   ["Claro que te interesa?", "mejor te envio audio.."],
-//   null,
-//   async (_, { flowDynamic, state }) => {
-//     try {
-//       console.log("🙉 texto a voz....");
-//       const currentState = state.getMyState();
-//       const path = await textToVoice(currentState.answer);
-//       console.log(`🙉 Fin texto a voz....[PATH]:${path}`);
-//       await flowDynamic([{ body: "escucha", media: path }]);
-//     } catch (error) {
-//       console.error("Error en flowStaff:", error);
-//     }
-//   }
-// );
-
 
 const flowStaff = addKeyword(EVENTS.ACTION).addAnswer(
   ["Claro que te interesa?", "mejor te envio audio.."],
   null,
   async (_, { flowDynamic, state }) => {
     console.log("🙉 texto a voz....");
-    const currentState = state.getMyState();
-    const path = await textToVoice(currentState.answer);
-    console.log(`🙉 Fin texto a voz....[PATH]:${path}`);
-    await flowDynamic([{ body: "escucha", media: path }]);
+    try {
+      const currentState = state.getMyState();
+      const path = await textToVoice(currentState.answer);
+      console.log(`🙉 Fin texto a voz....[PATH]:${path}`);
+      await flowDynamic({ body: "escucha", media: path });
+    } catch (error) {
+      if (error) {
+        console.error("Error en flowStaff:", error);
+      } else {
+        console.error("Error en flowStaff: El error es undefined, revisa la función textToVoice.");
+      }
+    }
   }
 );
 
-// const flowVoiceNote = addKeyword(EVENTS.VOICE_NOTE).addAction(
-//   async (ctx, ctxFn) => {
-//     try {
-//       await ctxFn.flowDynamic("dame un momento para escucharte...🙉");
-//       console.log("🤖 voz a texto....");
-//       const text = await handlerAI(ctx);
-//       console.log(`🤖 Fin voz a texto....[TEXT]: ${text}`);
-//       const currentState = ctxFn.state.getMyState();
-//       const fullSentence = `${currentState?.answer ?? ""}. ${text}`;
-//       const { employee, answer } = await employeesAddon.determine(fullSentence);
-//       ctxFn.state.update({ answer });
-//       employeesAddon.gotoFlow(employee, ctxFn);
-//     } catch (error) {
-//       console.error("Error en flowVoiceNote:", error);
-//     }
-//   }
-// );
+
+
 
 const flowVoiceNote = addKeyword(EVENTS.VOICE_NOTE).addAction(
   async (ctx, ctxFn) => {
-    await ctxFn.flowDynamic("dame un momento para escucharte...🙉");
-    console.log("🤖 voz a texto....");
-    const text = await handlerAI(ctx);
-    console.log(`🤖 Fin voz a texto....[TEXT]: ${text}`);
-    const currentState = ctxFn.state.getMyState();
-    const fullSentence = `${currentState?.answer ?? ""}. ${text}`;
-    const { employee, answer } = await employeesAddon.determine(fullSentence);
-    ctxFn.state.update({ answer });
-    employeesAddon.gotoFlow(employee, ctxFn);
+    try {
+      await ctxFn.flowDynamic("dame un momento para escucharte...🙉");
+      console.log("🤖 voz a texto....");
+      const text = await handlerAI(ctx);
+      console.log(`🤖 Fin voz a voz a texto....[TEXT]: ${text}`);
+      const currentState = ctxFn.state.getMyState();
+      const fullSentence = `${currentState?.answer ?? ""}. ${text}`;
+      const { employee, answer } = await employeesAddon.determine(fullSentence);
+      ctxFn.state.update({ answer });
+      employeesAddon.gotoFlow(employee, ctxFn);
+    } catch (error) {
+      console.error("Error en flowVoiceNote:", error);
+    }
   }
 );
+
 
 const main = async () => {
   const adapterDB = new MockAdapter();
@@ -96,7 +78,7 @@ const main = async () => {
    */
   const employees = [
     {
-      name: "EMPLEADO_STAFF_TOUR",
+      name: "NOT_EMPLOYEE",
       description:
         "Soy Jorge el staff amable encargado de atentender las solicitudes de los viajeros si tienen dudas, preguntas sobre el tour o la ciudad de madrid, mis respuestas son breves.",
       flow: flowStaff,
