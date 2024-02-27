@@ -31,7 +31,13 @@ const textToVoice = async (text,voiceId = 'U1aUPIDvufHK51E01Ykw') => {
 
   const response = await fetch(URL, requestOptions);
   const buffer = await response.arrayBuffer();
-  const pathFile = `${process.cwd()}/tmp/${Date.now()}-auido.mp3`;
+  const pathFilemp3 = `${process.cwd()}/tmp/${Date.now()}-auido.mp3`;
+  /*
+  Aquí vas a convertir el mp3 a ogg 
+  */
+
+  
+  const pathFile = `${process.cwd()}/tmp/${Date.now()}-auido.ogg`;
   fs.writeFileSync(pathFile, Buffer.from(buffer));
   
   return pathFile;

@@ -13,6 +13,7 @@ const BaileysProvider = require("@bot-whatsapp/provider/baileys");
 const MockAdapter = require("@bot-whatsapp/database/mock");
 const { handlerAI } = require("./utils");
 const { textToVoice } = require("./services/eventlab");
+// const sendAudio = require("./services/sendAudio");
 
 const employeesAddonConfig = {
   model: "gpt-3.5-turbo-0301",
@@ -26,13 +27,22 @@ const employeesAddon = init(employeesAddonConfig);
 const flowStaff = addKeyword(EVENTS.ACTION).addAnswer(
   ["Claro que te interesa?", "mejor te envio audio.."],
   null,
-  async (_, { flowDynamic, state }) => {
+  async (ctx, { flowDynamic, state, provider }) => {
     console.log("🙉 texto a voz....");
     try {
       const currentState = state.getMyState();
       const path = await textToVoice(currentState.answer);
       console.log(`🙉 Fin texto a voz....[PATH]:${path}`);
-      await flowDynamic({ body: "escucha", media: path });
+      // await flowDynamic({ body: "escucha", media: path });
+
+      const id = ctx.key.remoteJid
+      const sock = await provider.getInstance()
+      await sock.sendMessage(
+        id, 
+        { audio: { url: path} },
+        // { url: path }, // can send mp3, mp4, & ogg
+      )
+
     } catch (error) {
       if (error) {
         console.error("Error en flowStaff:", error);
@@ -42,6 +52,8 @@ const flowStaff = addKeyword(EVENTS.ACTION).addAnswer(
     }
   }
 );
+
+
 
 
 
