@@ -39,7 +39,7 @@ const flowStaff = addKeyword(EVENTS.ACTION).addAnswer(
       const sock = await provider.getInstance()
       await sock.sendMessage(
         id, 
-        { audio: { url: path} },
+        { audio: { url: path}, mimetype: 'audio/mp4'},
         // { url: path }, // can send mp3, mp4, & ogg
       )
 
