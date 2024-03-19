@@ -66,6 +66,7 @@ const flowVoiceNote = addKeyword(EVENTS.VOICE_NOTE).addAction(
       const text = await handlerAI(ctx);
       console.log(`🤖 Fin voz a voz a texto....[TEXT]: ${text}`);
       const currentState = ctxFn.state.getMyState();
+      console.log("QUIERO VER QUÉ ES CTX",ctx,"FIN DE CTX")
       const fullSentence = `${currentState?.answer ?? ""}. ${text}`;
       const { employee, answer } = await employeesAddon.determine(fullSentence);
       ctxFn.state.update({ answer });
