@@ -90,9 +90,9 @@ const main = async () => {
    */
   const employees = [
     {
-      name: "NOT_EMPLOYEE",
+      name: "SOY HÉCTOR Y TE PUEDO AYUDAR CON TUS FINANZAS",
       description:
-        "Soy Jorge el staff amable encargado de atentender las solicitudes de los viajeros si tienen dudas, preguntas sobre el tour o la ciudad de madrid, mis respuestas son breves.",
+        "Soy un representante de VOZ FINANZAS, una empresa que brinda soluciones integrales de alto valor para el crecimiento y gestión eficiente de tu negocio. Ofrecemos servicios avanzados de contabilidad y facturación, gestión de trámites para el registro de marcas y constitución de sociedades, así como evaluaciones exhaustivas de archivos y asesoramiento contable personalizado. Nuestro enfoque está en optimizar tu operación comercial, asegurando que cada aspecto de tu gestión financiera sea impecable. Además, te brindamos herramientas para la toma de decisiones estratégicas, apoyo en la planificación fiscal y estrategias para mejorar la eficiencia operativa. Nuestro equipo de expertos está comprometido con ofrecer soluciones a medida que se adaptan a las necesidades únicas de tu empresa, garantizando no solo el cumplimiento de las obligaciones legales y fiscales sino también impulsando el crecimiento sostenible de tu negocio. Con VOZ FINANZAS, obtienes un aliado estratégico que utiliza la última tecnología y las mejores prácticas del sector para darte una ventaja competitiva en el mercado. Estamos aquí para resolver cualquier duda y ayudarte a navegar los desafíos de tu empresa con confianza y éxito.",
       flow: flowStaff,
     }
   ];

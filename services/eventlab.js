@@ -1,64 +1,3 @@
-// const fs = require('node:fs');
-// const fetch = require('node-fetch'); // Asegúrate de tener 'node-fetch' para hacer peticiones HTTP.
-// const ffmpeg = require('fluent-ffmpeg'); // Asegúrate de haber instalado 'fluent-ffmpeg'.
-
-// /**
-//  *
-//  * @param {*} text Texto a convertir a voz
-//  * @param {*} voiceId ID de la voz para la síntesis
-//  * @returns Ruta del archivo OGG
-//  */
-// const textToVoice = async (text, voiceId = 'U1aUPIDvufHK51E01Ykw') => {
-//   const EVENT_TOKEN = process.env.EVENT_TOKEN ?? "";
-//   const URL = `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`;
-
-//   const header = new Headers();
-//   header.append("accept", "audio/mpeg");
-//   header.append("xi-api-key", EVENT_TOKEN);
-//   header.append("Content-Type", "application/json");
-
-//   const raw = JSON.stringify({
-//     text,
-//     model_id: "eleven_multilingual_v1",
-//     voice_settings: {
-//       stability: 1,
-//       similarity_boost: 0.8,
-//     },
-//   });
-
-//   const requestOptions = {
-//     method: "POST",
-//     headers: header,
-//     body: raw,
-//     redirect: "follow",
-//   };
-
-//   const response = await fetch(URL, requestOptions);
-//   const buffer = await response.arrayBuffer();
-//   const mp3FilePath = `${process.cwd()}/tmp/${Date.now()}-audio.mp3`;
-//   fs.writeFileSync(mp3FilePath, Buffer.from(buffer));
-
-//   // Convertir MP3 a OGG
-//   const oggFilePath = `${process.cwd()}/tmp/${Date.now()}-audio.ogg`;
-//   await new Promise((resolve, reject) => {
-//     ffmpeg(mp3FilePath)
-//       .toFormat('ogg')
-//       .on('error', (err) => reject(err))
-//       .on('end', () => {
-//         resolve();
-//       })
-//       .save(oggFilePath);
-//   });
-
-//   // Opcionalmente, puedes eliminar el archivo MP3 después de la conversión
-//   fs.unlinkSync(mp3FilePath);
-
-//   return oggFilePath;
-// };
-
-// module.exports = { textToVoice };
-
-
 const fs = require('node:fs');
 const fetch = require('node-fetch'); // Asegúrate de tener 'node-fetch' para hacer peticiones HTTP.
 const ffmpeg = require('fluent-ffmpeg'); // Asegúrate de haber instalado 'fluent-ffmpeg'.
@@ -69,7 +8,7 @@ const ffmpeg = require('fluent-ffmpeg'); // Asegúrate de haber instalado 'fluen
  * @param {*} voiceId ID de la voz para la síntesis
  * @returns Ruta del archivo MP4
  */
-const textToVoice = async (text, voiceId = 'U1aUPIDvufHK51E01Ykw') => {
+const textToVoice = async (text, voiceId = 'LlsiGQPTj7Tt7gsEPZl0') => {
   const EVENT_TOKEN = process.env.EVENT_TOKEN ?? "";
   const URL = `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`;
 
