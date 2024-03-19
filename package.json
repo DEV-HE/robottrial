@@ -5,7 +5,8 @@
     "main": "app.js",
     "scripts": {
         "pre-copy": "cd .. && npm run  copy.lib base-baileys-memory",
-        "start": "node app.js"
+        "start": "node app.js",
+        "doc": "jsdoc -c jsdoc.json"
     },
     "keywords": [],
     "dependencies": {
