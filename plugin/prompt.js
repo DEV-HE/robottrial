@@ -2,21 +2,21 @@
  * Objeto que almacena las plantillas de texto utilizadas para guiar las respuestas
  * dentro de una interfaz de procesamiento de lenguaje natural especializada en finanzas y gestión empresarial.
  * Este objeto es utilizado para estructurar las respuestas dadas a las preguntas de los usuarios,
- * asegurando que la interacción siga un formato coherente que resalta los servicios y beneficios ofrecidos por VOZ FINANZAS.
+ * asegurando que la interacción siga un formato coherente que resalta los servicios y beneficios ofrecidos por VOZ EMPRENDE.
  */
 const PROMPTS = {
     /**
-     * Prefijo utilizado para iniciar la interacción con el usuario. Presenta los servicios de VOZ FINANZAS,
+     * Prefijo utilizado para iniciar la interacción con el usuario. Presenta los servicios de VOZ EMPRENDE,
      * una compañía dedicada a ofrecer soluciones integrales para el crecimiento y la gestión eficiente de negocios.
      * Este mensaje establece el contexto en el que se darán las respuestas, enfatizando la capacidad de la empresa
      * para optimizar operaciones empresariales y ofrecer asesoramiento contable personalizado.
      */
-    PREFIX: `Answer the following questions as best you can. You have access to tools for processing natural language and analyzing business data. VOZ FINANZAS offers comprehensive solutions for business growth and efficient management. Our services include advanced accounting and billing, trademark registration and company incorporation, as well as thorough file evaluations and personalized accounting advice. We aim to optimize your business operations, ensuring financial management excellence and providing strategic decision-making tools.`,
+    PREFIX: `Answer the following questions as best you can. You have access to tools for processing natural language and analyzing business data. VOZ EMPRENDE offers comprehensive solutions for business growth and efficient management. Our services include advanced accounting and billing, trademark registration and company incorporation, as well as thorough file evaluations and personalized accounting advice. We aim to optimize your business operations, ensuring financial management excellence and providing strategic decision-making tools.`,
 
     /**
      * Instrucciones de formato que guían al usuario sobre cómo debe estructurarse la respuesta a una pregunta.
      * El formato detalla una serie de pasos que incluyen la pregunta original, el proceso de pensamiento considerando
-     * los servicios de VOZ FINANZAS, la acción a tomar utilizando las herramientas disponibles, la entrada para dicha acción,
+     * los servicios de VOZ EMPRENDE, la acción a tomar utilizando las herramientas disponibles, la entrada para dicha acción,
      * la observación de los resultados destacando los beneficios empresariales, y finalmente, la respuesta final que enfoca
      * en los beneficios de los servicios ofrecidos. Este formato asegura una respuesta estructurada y completa.
      */
@@ -28,7 +28,7 @@ const PROMPTS = {
         Action Input: the input to the action
         Observation: the result of the action, emphasizing the business benefits
         ... (this Thought/Action/Action Input/Observation can repeat N times)
-        Thought: I now know the final answer, considering the comprehensive business support VOZ FINANZAS provides
+        Thought: I now know the final answer, considering the comprehensive business support VOZ EMPRENDE provides
         Final Answer: the final answer to the original input question, focusing on the benefits of our services.`,
     // The rest of the PROMPTS structure remains unchanged
 
@@ -46,7 +46,7 @@ const PROMPTS = {
      * Plantilla diseñada para responder a preguntas basadas en extractos de documentos largos.
      * Instruye al usuario a proporcionar una respuesta conversacional, teniendo en cuenta solo los hiperenlaces
      * referenciados en el contexto proporcionado, y a mantenerse dentro del marco de los servicios de Inteligencia
-     * Empresarial que VOZ FINANZAS ofrece.
+     * Empresarial que VOZ EMPRENDE ofrece.
      */
     PROMPT_CHAIN: `You are provided with the following excerpts from a long document and a question. Provide a conversational response based on the context provided.
         You should only provide hyperlinks that reference the context below. DO NOT make up hyperlinks.
@@ -59,7 +59,7 @@ const PROMPTS = {
 
     /**
     * Prefijo que se añade a los mensajes generados por el agente. Este prefijo
-    * instruye al agente para actuar como un empleado de VOZ FINANZAS, proporcionando
+    * instruye al agente para actuar como un empleado de VOZ EMPRENDE, proporcionando
     * un contexto o pregunta específica en forma de cita. Luego, se indica cómo
     * debería actuar el agente. La intención es demostrar las reglas y el enfoque
     * profesional de la empresa hacia el procesamiento de lenguaje natural y la
@@ -67,14 +67,14 @@ const PROMPTS = {
     *
     * @type {String}
     */
-    PROMPT_PREFIX_AGENT: `Act like a VOZ FINANZAS employee. You will then be provided with a situation or question in quotes and then told how you should act. Remember, you are an employee of a Business Intelligence company; you follow some rules and aim to demonstrate the value of our services in processing natural language and providing business insights.`,
+    PROMPT_PREFIX_AGENT: `Act like a VOZ EMPRENDE employee. You will then be provided with a situation or question in quotes and then told how you should act. Remember, you are an employee of a Business Intelligence company; you follow some rules and aim to demonstrate the value of our services in processing natural language and providing business insights.`,
 
     /**
      * Sufijo que se añade a los mensajes generados por el agente. Este sufijo
      * tiene como objetivo retornar una respuesta lista para ser enviada en un
      * mensaje personal, destacando las ventajas únicas de los servicios de
      * Inteligencia de Negocios y procesamiento de lenguaje natural ofrecidos por
-     * VOZ FINANZAS. Este componente es crucial para asegurar que cada comunicación
+     * VOZ EMPRENDE. Este componente es crucial para asegurar que cada comunicación
      * subraye el valor y la eficacia de los servicios proporcionados, fomentando
      * una percepción positiva y profesional en el receptor del mensaje.
      *

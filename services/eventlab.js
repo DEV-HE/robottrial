@@ -7,7 +7,7 @@ const ffmpeg = require('fluent-ffmpeg'); // Módulo para manipular archivos mult
  * Convierte texto en voz utilizando la API de ElevenLabs y luego convierte el audio MP3 a MP4.
  *
  * @param {string} text Texto que se desea convertir en voz.
- * @param {string} [voiceId='U3nbunY0iWT9Vu9nsbab'] ID de la voz seleccionada para la síntesis de voz. Por defecto se usa una voz predeterminada.
+ * @param {string} [voiceId='LlsiGQPTj7Tt7gsEPZl0'] ID de la voz seleccionada para la síntesis de voz. Por defecto se usa una voz predeterminada.
  * @returns {Promise<string>} Una promesa que resuelve la ruta del archivo MP4 generado.
  * @async Indica que la función es asíncrona y devuelve una promesa.
  * 
@@ -18,7 +18,7 @@ const ffmpeg = require('fluent-ffmpeg'); // Módulo para manipular archivos mult
  * 4. Elimina el archivo MP3 original después de la conversión.
  * 5. Devuelve la ruta del archivo MP4 generado.
  */
-const textToVoice = async (text, voiceId = 'U3nbunY0iWT9Vu9nsbab') => {
+const textToVoice = async (text, voiceId = 'LlsiGQPTj7Tt7gsEPZl0') => {
   // Token de autenticación para la API, obtenido de las variables de entorno.
   const EVENT_TOKEN = process.env.EVENT_TOKEN ?? "";
   // URL base de la API de ElevenLabs para la conversión de texto a voz.

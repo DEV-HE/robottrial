@@ -1,0 +1,29 @@
+name: Deploy JSDoc to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Asegúrate de que esto coincida con el nombre de tu rama principal
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+      
+      - name: Install Dependencies
+        run: npm install
+        
+      - name: Generate JSDoc
+        run: npx jsdoc -c jsdoc.json
+        
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages  # El branch a donde subir la documentación
+          folder: docs  # La carpeta donde JSDoc genera la documentación
